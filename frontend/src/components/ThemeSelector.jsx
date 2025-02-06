@@ -1,13 +1,27 @@
 import { PaletteIcon } from "lucide-react";
+import { useState } from "react";
 
 import { THEMES } from "../constants";
+import { useThemeStore } from "../store/useThemeStore";
 
 const ThemeSelector = () => {
-  const theme = "forest";
+  const { theme, setTheme } = useThemeStore();
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (e) => {
+    setOpen((prev) => !prev);
+    if (open) {
+      e.currentTarget.blur();
+    }
+  };
 
   return (
     <div className="dropdown dropdown-end">
-      <button tabIndex={0} className="btn btn-ghost btn-circle">
+      <button
+        tabIndex={0}
+        className="btn btn-ghost btn-circle"
+        onClick={handleClick}
+      >
         <PaletteIcon className="size-5" />
       </button>
 
@@ -23,6 +37,7 @@ const ThemeSelector = () => {
                 ? "bg-primary/10 text-primary"
                 : "hover:bg-base-content/5"
             }`}
+            onClick={() => setTheme(themeOption.name)}
           >
             <PaletteIcon className="size-4" />
             <span className="text-sm font-medium">{themeOption.label}</span>
