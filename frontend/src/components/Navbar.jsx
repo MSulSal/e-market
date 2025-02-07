@@ -19,7 +19,7 @@ const Navbar = () => {
                   className="font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  E-MARKET
+                  E-VENTORY
                 </span>
               </div>
             </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <ThemeSelector />
-            {isHomePage && (
+            {/* {isHomePage && (
               <div className="indicator">
                 <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
                   <ShoppingBagIcon className="size-5" />
@@ -36,7 +36,7 @@ const Navbar = () => {
                   </span>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
