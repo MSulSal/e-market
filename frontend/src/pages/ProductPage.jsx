@@ -1,10 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeftIcon, Trash2Icon, SaveIcon } from "lucide-react";
-
 import { useProductStore } from "../store/useProductStore";
 import { useEffect } from "react";
+import { ArrowLeftIcon, SaveIcon, Trash2Icon } from "lucide-react";
 
-const ProductPage = () => {
+function ProductPage() {
   const {
     currentProduct,
     formData,
@@ -15,7 +14,6 @@ const ProductPage = () => {
     updateProduct,
     deleteProduct,
   } = useProductStore();
-
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -33,7 +31,7 @@ const ProductPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="loading loading-spinner loading-lg"></div>
+        <div className="loading loading-spinner loading-lg" />
       </div>
     );
   }
@@ -48,11 +46,13 @@ const ProductPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <button onClick={() => navigate("/")} className="size-4 mr-2">
+      <button onClick={() => navigate("/")} className="btn btn-ghost mb-8">
         <ArrowLeftIcon className="size-4 mr-2" />
         Back to Products
       </button>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* PRODUCT IMAGE */}
         <div className="rounded-lg overflow-hidden shadow-lg bg-base-100">
           <img
             src={currentProduct?.image}
@@ -61,9 +61,11 @@ const ProductPage = () => {
           />
         </div>
 
+        {/* PRODUCT FORM */}
         <div className="card bg-base-100 shadow-lg">
           <div className="card-body">
             <h2 className="card-title text-2xl mb-6">Edit Product</h2>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -71,6 +73,7 @@ const ProductPage = () => {
               }}
               className="space-y-6"
             >
+              {/* PRODUCT NAME */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-base font-medium">
@@ -88,6 +91,7 @@ const ProductPage = () => {
                 />
               </div>
 
+              {/* PRODUCT PRICE */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-base font-medium">
@@ -107,6 +111,7 @@ const ProductPage = () => {
                 />
               </div>
 
+              {/* PRODUCT IMAGE URL */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-base font-medium">
@@ -124,6 +129,7 @@ const ProductPage = () => {
                 />
               </div>
 
+              {/* FORM ACTIONS */}
               <div className="flex justify-between mt-8">
                 <button
                   type="button"
@@ -160,6 +166,5 @@ const ProductPage = () => {
       </div>
     </div>
   );
-};
-
+}
 export default ProductPage;
